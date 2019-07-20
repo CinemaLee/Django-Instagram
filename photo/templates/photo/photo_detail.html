@@ -1,0 +1,30 @@
+{% extends 'photo/base.html' %}
+{% block title %}detail{% endblock%}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-7">
+            <div class="card" >
+                <img src="{{ object.image.url }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ object.author }}</h5>
+                    <p class="card-text">{{ object.text }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">생성일 : {{ object.created_at }}</li>
+                    <li class="list-group-item">마지막 수정일 : {{ object.updated_at }}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{% url 'photo:update' object.id %}" class="card-link">수정</a>
+                    <a href="{% url 'photo:delete' object.id %}" class="card-link">삭제</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}

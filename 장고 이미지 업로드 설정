@@ -1,0 +1,26 @@
+
+
+
+
+
+
+
+1. pip install pillow
+
+
+2. 모델설정  image = models.ImageField(upload_to='timeline_photo/%Y/%m/%d')
+
+
+3. settings.py 설정
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
+
+MEDIA_URL = '/media/'
+
+
+4. 프로젝트 url에 설정 추가
+
+from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
