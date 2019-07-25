@@ -1,4 +1,4 @@
-{% extends 'photo/base.html' %}
+{% extends 'base.html' %}
 {% block title %}list{% endblock%}
 
 {% block content %}
@@ -14,19 +14,38 @@
                     <p class="card-text">{{ obj.text }}</p>
                 </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'photo:like' obj.id %}"
+                            class="float-left">좋아요</a>
+                        {% if obj.like.all.count %}
+                        <span class="float-left">
+                            {{ obj.like.all.count }}
+                        </span>
+                        {% endif %}
+                        {% if user in obj.favorite.all %}
+                        <a href="{% url 'photo:favorite' obj.id %}"
+                            class="float-right text-danger">저장되었습니다.</a>
+                        {% else %}
+                        <a href="{% url 'photo:favorite' obj.id %}"
+                            class="float-right" >저장하기</a>
+                        {% endif %}
+                    </li>
+
                     <li class="list-group-item">생성일 : {{ obj.created_at }}</li>
                     <li class="list-group-item">마지막 수정일 : {{ obj.updated_at }}</li>
                 </ul>
                 <div class="card-body">
                     <a href="{% url 'photo:detail' obj.id %}" class="card-link">댓글달기</a>
+                    {% if user == obj.author %}
                     <a href="{% url 'photo:update' obj.id %}" class="card-link">수정</a>
                     <a href="{% url 'photo:delete' obj.id %}" class="card-link">삭제</a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
 
         </div>
-        <div class="col">   </div>
+        <div class="col"> </div>
     </div>
 </div>
 

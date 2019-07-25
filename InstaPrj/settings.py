@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'photo',
+    'accounts',
+    'disqus',
+    'django.contrib.sites'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +61,7 @@ ROOT_URLCONF = 'InstaPrj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'layout')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,6 +126,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# STATICFILES_DIRS=[
+#     os.path.join(BASE_DIR, 'static') # 이 앱 안에 static폴더 안에 있는것이 스태틱 파일들이다! 라는 뜻.
+# ]
+
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
 
 MEDIA_URL = '/media/'
+
+
+LOGIN_REDIRECT_URL = '/instagram'
+
+
+DISQUS_WEBSITE_SHORTNAME = 'leestagram'
+SITE_ID = 1
+

@@ -13,6 +13,9 @@ class Photo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True,verbose_name='작성된 시간')
     updated_at = models.DateTimeField(auto_now=True,verbose_name='수정된 시간')
 
+    like = models.ManyToManyField(User, related_name='like_post', blank=True)
+    favorite = models.ManyToManyField(User,related_name='favorite_post', blank=True)
+
     def __str__(self):
         return "text : "+self.text
 

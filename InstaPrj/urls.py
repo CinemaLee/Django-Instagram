@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('instagram/', include('photo.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 # 이미지 업로드를 위한 추가설정.

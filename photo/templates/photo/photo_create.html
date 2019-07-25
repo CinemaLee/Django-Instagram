@@ -1,16 +1,17 @@
-{% extends 'photo/base.html' %}
+{% extends 'base.html' %}
 {% block title %}Create{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col"></div>
-        <div class="col-12">
+        <div class="col-6">
             <div class="alert alert-primary" role="alert">모든 부분을 다 채워넣어주세요!!</div>
+            <form action="" method="post" enctype="multipart/form-data"> <!--html에서는 폼형태에서의 입력을 전부 text파일로 인지한다. 따라서 이것이 image파일 이라는 것을 알려주는 속성이다.-->
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Upload" class="btn btn-primary">
+            </form>
         </div>
-        <form action="" method="post">{% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Upload" class="btn btn-primary">
-        </form>
         <div class="col"></div>
     </div>
 </div>
